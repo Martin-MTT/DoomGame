@@ -1,3 +1,4 @@
+use crate::components::Enemy;
 use bevy::math::primitives::{Cuboid, Plane3d};
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
@@ -49,4 +50,23 @@ pub fn spawn_world(
             Collider::cuboid(scale.x / 2.0, scale.y / 2.0, scale.z / 2.0),
         ));
     }
+}
+
+pub fn spawn_enemy(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    commands.spawn((
+        PbrBundle {
+            mesh: meshes.add(Mesh::from(Cuboid::new(0.5, 0.5, 0.5))),
+            material: materials.add(Color::rgb(1.0, 0.0, 0.0)), //Red Colour
+            transform: Transform::from_xyz(3.0, 0.5, 0.0),
+            ..default()
+        },
+        Enemy { health: 50 },
+        Collider::cuboid(0.5, 0.5, 0.5),
+        RigidBody::Dynamic,
+        Velocity::default(),
+    ));
 }
