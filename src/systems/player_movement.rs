@@ -22,6 +22,13 @@ pub fn move_player(
             direction += *transform.right();
         }
 
-        velocity.linvel = direction.normalize_or_zero() * player.speed;
+        let horizontal_velocity = direction.normalize_or_zero() * player.speed;
+
+        // Keep vertical velocity (Y) from physics (gravity, jumping, etc.)
+        velocity.linvel = Vec3::new(
+            horizontal_velocity.x,
+            velocity.linvel.y, // Preserve current Y velocity
+            horizontal_velocity.z,
+        );
     }
 }

@@ -25,7 +25,7 @@ pub fn spawn_camera(mut commands: Commands) {
         RigidBody::Dynamic,
         Collider::capsule_y(0.75, 0.3),
         Velocity::default(),
-        LockedAxes::ROTATION_LOCKED,
+        LockedAxes::ROTATION_LOCKED | LockedAxes::TRANSLATION_LOCKED_Y,
     ));
 }
 

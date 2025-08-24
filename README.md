@@ -10,3 +10,7 @@ This is a personal project, where I try to build a Doom like game using Rust pro
    - Keyboard moves player velocity
    - Mouse rotates camera
    - Escape exits the app
+
+
+Initial Screenshot:
+![alt text](image.png)
